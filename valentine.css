@@ -1,10 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
 
 body {
-  background: #ecebeb;
+  background: linear-gradient(135deg, #ffeef8 0%, #f8e8f0 50%, #f0e0e8 100%);
   height: 100vh;
   display: grid;
   place-items: center;
+  animation: backgroundShift 8s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+
+  0%,
+  100% {
+    background: linear-gradient(135deg, #ffeef8 0%, #f8e8f0 50%, #f0e0e8 100%);
+  }
+
+  50% {
+    background: linear-gradient(135deg, #f8e8f0 0%, #f0e0e8 50%, #ffeef8 100%);
+  }
 }
 
 body .drawBox {
@@ -22,6 +35,90 @@ body .drawBox .smallHearts {
   left: 0;
   right: 0;
   margin: auto;
+}
+
+body .drawBox .sparkles {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  pointer-events: none;
+}
+
+body .drawBox .sparkles .sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ffd700;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 6px #ffd700;
+}
+
+body .drawBox .starSparkles {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  pointer-events: none;
+}
+
+body .drawBox .starSparkles .starSparkle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+body .drawBox .starSparkles .starSparkle::before {
+  content: '★';
+  position: absolute;
+  color: #ffd700;
+  font-size: 12px;
+  text-shadow: 0 0 8px #ffd700;
+}
+
+body .drawBox .heartBurst {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  pointer-events: none;
+}
+
+body .drawBox .heartBurst .burstHeart {
+  position: absolute;
+  font-size: 16px;
+  color: #ff6b9d;
+  opacity: 0;
+  pointer-events: none;
+}
+
+body .drawBox .starField {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+body .drawBox .starField .star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0.6;
+  box-shadow: 0 0 4px #ffffff;
 }
 
 body .drawBox .smallHearts .smallHeart {
@@ -117,7 +214,22 @@ body .mainHeart svg .drawHeart {
   stroke-width: 3px;
   stroke-dasharray: 1867.0498046875;
   stroke-dashoffset: 1867.0498046875;
-  animation: draw 3s linear 0.5s forwards;
+  animation: draw 3s linear 0.5s forwards, pulseGlow 2s ease-in-out 3.5s infinite;
+  filter: drop-shadow(0 0 8px rgba(214, 59, 59, 0.3));
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 8px rgba(214, 59, 59, 0.3));
+    stroke-width: 3px;
+  }
+
+  50% {
+    filter: drop-shadow(0 0 15px rgba(214, 59, 59, 0.6));
+    stroke-width: 4px;
+  }
 }
 
 @keyframes draw {
@@ -145,6 +257,22 @@ body .greeting .s {
   display: table-cell;
   padding: 0 1px;
   opacity: 0;
+  text-shadow: 0 0 10px rgba(214, 59, 59, 0.5);
+  animation: textGlow 3s ease-in-out 6s infinite;
+}
+
+@keyframes textGlow {
+
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgba(214, 59, 59, 0.5);
+    transform: scale(1);
+  }
+
+  50% {
+    text-shadow: 0 0 20px rgba(214, 59, 59, 0.8);
+    transform: scale(1.05);
+  }
 }
 
 body .greeting .s.space {
